@@ -22,7 +22,7 @@ Nota : Cecill v2 license is a GPL compatible license.
 ## Installation user mode
 
 ```bash
-conda install openalea.visualea -c openalea3 -c conda-forge  
+mamba install openalea.visualea -c openalea3 -c conda-forge  
 ```
 
 ## Installation dev mode
@@ -30,9 +30,8 @@ conda install openalea.visualea -c openalea3 -c conda-forge
 - Create a conda environment 
     
     ```
-    conda create -n visualea -c openalea3 -c conda-forge openalea.plantgl pyqglviewer  
-    conda activate visualea  
-    conda install -c openalea3 -c conda-forge numpy scipy qtconsole pandas matplotlib openalea.sconsx networkx ipykernel ipyparallel
+    mamba env create -n visualea -f conda/environment.yml
+    mamba activate visualea  
     ```
 
 - clone from the openalea org
