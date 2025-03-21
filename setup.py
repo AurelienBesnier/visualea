@@ -57,7 +57,7 @@ setup(
     share_dirs = { 'share' : 'share' },
 
     # Dependencies
-    setup_requires = ['openalea.deploy'],
+    # setup_requires = ['openalea.deploy'],
     )
 
 

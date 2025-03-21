@@ -1,0 +1,10 @@
+name: visualea
+channels:
+  - conda-forge
+  - openalea3
+dependencies:
+  - python
+  - openalea.deploy
+  - pip
+  - pip:
+    - -e ..[doc]

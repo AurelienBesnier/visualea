@@ -3,6 +3,7 @@ include *.txt
 include *.py
 
 recursive-include src/visualea *
+recursive-include share *
 
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]

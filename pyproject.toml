@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openalea.visualea"
+authors = [
+  { name = "OpenAlea consortium"},
+  { name = "Christophe Pradal"},
+]
+description = "OpenAlea Visual Programming Environment"
+license = {file = "LICENSE.txt"}
+requires-python = ">=3.8"
+classifiers = [
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: CeCILL-C License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering",
+]
+keywords = ["visual programming", "openalea", "Scientific Workflows"]
+dynamic = ["version", "readme"]
+dependencies = [
+  "numpy<2.0",
+  "numba",
+  "scipy",
+  "networkx",
+  "qtconsole",
+  "opencv-python",
+  "matplotlib",
+  "ipykernel",
+  "ipyparallel",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+doc = [
+  "pydata-sphinx-theme",
+  "myst-parser",
+  "sphinx-favicon",
+  "ipython_genutils",
+  "nbsphinx",
+]
+
+[project.urls]
+Homepage = "https://openalea.readthedocs.io/"
+"Bug Tracker" = "https://github.com/openalea/visualea/issues"
+Discussions = "https://github.com/openalea/visualea/discussions"
+Changelog = "https://github.com/openalea/visualea/releases"
+
+[project.gui-scripts]
+"visualea" = "openalea.visualea.visualea_script:start_gui"
+"aleashell" = "openalea.visualea.shell:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "openalea.visualea.version.__version__"}
+readme = {file = ["README.md"]}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["openalea.*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.ui", "*.png"]
