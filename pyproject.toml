@@ -29,15 +29,6 @@ classifiers = [
 keywords = ["visual programming", "openalea", "Scientific Workflows"]
 dynamic = ["version", "readme"]
 dependencies = [
-  "numpy<2.0",
-  "numba",
-  "scipy",
-  "networkx",
-  "qtconsole",
-  "opencv-python",
-  "matplotlib",
-  "ipykernel",
-  "ipyparallel",
 ]
 
 [project.optional-dependencies]
