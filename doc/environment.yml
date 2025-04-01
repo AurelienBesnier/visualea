@@ -5,6 +5,10 @@ channels:
 dependencies:
   - python
   - openalea.deploy
+  - openalea.core
+  - openalea.oalab
+  - openalea.grapheditor
+  - openalea.stdlib
   - pip
   - pip:
     - -e ..[doc]
