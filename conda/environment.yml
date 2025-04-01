@@ -3,14 +3,8 @@ channels:
   - openalea3
 dependencies:
   - conda-forge
-  - openalea.plantgl
-  - pyqglviewer
-  - numpy
-  - scipy
-  - qtconsole
-  - pandas
-  - matplotlib
-  - openalea.sconsx
-  - networkx
-  - ipykernel
-  - ipyparallel
+  - openalea.deploy
+  - openalea.core
+  - openalea.oalab
+  - openalea.grapheditor
+  - openalea.stdlib
