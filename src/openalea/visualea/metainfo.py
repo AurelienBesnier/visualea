@@ -6,9 +6,8 @@ __revision__ = " $Id$"
 
 def get_version():
 
-    import pkg_resources
-    dists = pkg_resources.require("openalea.visualea")
-    return dists[0].version
+    from importlib.metadata import version
+    return version("openalea.visualea")
 
 url = "http://openalea.rtfd.io"
 

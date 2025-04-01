@@ -45,7 +45,7 @@ for name in [
     "tableedit",
     "tofactory",
 ]:
-    src = get_data("openalea.visualea.dialogs", "resources") / name + '.ui'
+    src = get_data("openalea.visualea.dialogs", "resources") / (name + '.ui')
     dest = get_data("openalea.visualea.dialogs", "ui_%s.py" % name)
     generate_pyfile_from_uifile(__name__, src=src, dest=dest)
 
@@ -101,7 +101,7 @@ class NewGraph(QtWidgets.QDialog, ui_newgraph.Ui_NewGraphDialog):
         cats.sort()
         self.categoryEdit.addItems(cats)
 
-        if(factory): # Edition mode
+        if factory: # Edition mode
             self.packageBox.addItem(factory.package.name)
             self.packageBox.setEnabled(False)
             self.inputs = factory.inputs
@@ -113,7 +113,7 @@ class NewGraph(QtWidgets.QDialog, ui_newgraph.Ui_NewGraphDialog):
 
         else:
             self.packageBox.addItems(pkgstr)
-            if(pkg_id):
+            if pkg_id:
                 i = self.packageBox.findText(pkg_id)
             else:
                 i = self.packageBox.findText(Session.USR_PKG_NAME)
@@ -147,7 +147,7 @@ class NewGraph(QtWidgets.QDialog, ui_newgraph.Ui_NewGraphDialog):
         dialog = IOConfigDialog(self.inputs, self.outputs, parent=self)
         ret = dialog.exec_()
 
-        if(ret):
+        if ret:
             self.inputs = dialog.inputs
             self.outputs = dialog.outputs
 
@@ -178,7 +178,7 @@ class NewGraph(QtWidgets.QDialog, ui_newgraph.Ui_NewGraphDialog):
         except AttributeError:
             description = str(str(self.descriptionEdit.text()).encode('latin1'))  # Qt api 2
 
-        return (name, self.get_package(), category, description)
+        return name, self.get_package(), category, description
 
     def create_cnfactory(self, pkgmanager):
         """ Create, register and return a new CompositeNodeFactory """
@@ -232,7 +232,7 @@ class NewGraph(QtWidgets.QDialog, ui_newgraph.Ui_NewGraphDialog):
         factory.package.write()
 
         # update category
-        if(oldcat != cat):
+        if oldcat != cat:
             if oldcat in self.pmanager.category:
                 self.pmanager.category[oldcat].remove(factory)
             self.pmanager.update_category(factory.package)
@@ -267,7 +267,7 @@ class NewData(QtWidgets.QDialog, ui_newdata.Ui_NewDataDialog):
         pkgstr.sort()
 
         self.packageBox.addItems(pkgstr)
-        if(pkg_id):
+        if pkg_id:
             i = self.packageBox.findText(pkg_id)
         else:
             i = self.packageBox.findText(Session.USR_PKG_NAME)
@@ -281,7 +281,7 @@ class NewData(QtWidgets.QDialog, ui_newdata.Ui_NewDataDialog):
         # Test if name is correct
         name = str(self.nameEdit.text())
         name = os.path.basename(name)
-        if(not name or name in self.get_package()):
+        if not name or name in self.get_package():
             mess = QtWidgets.QMessageBox.warning(self, "Error", "The Name is already used")
             return
 
@@ -294,7 +294,7 @@ class NewData(QtWidgets.QDialog, ui_newdata.Ui_NewDataDialog):
             self, "Import file")
 
         filename = str(filename)
-        if(not filename):
+        if not filename:
             return
 
         self.nameEdit.setText(os.path.abspath(filename))
@@ -320,7 +320,7 @@ class NewData(QtWidgets.QDialog, ui_newdata.Ui_NewDataDialog):
         except AttributeError:
             description = str(str(self.descriptionEdit.text()).encode('latin1'))  # Qt api 2
 
-        return (name, self.get_package(), description)
+        return name, self.get_package(), description
 
     def create_datafactory(self, pkgmanager):
         """ Create, register and return a new CompositeNodeFactory """
@@ -352,7 +352,7 @@ class NewPackage(QtWidgets.QDialog, ui_newpackage.Ui_NewPackageDialog):
         self.pathButton.clicked.connect(self.path_clicked)
 
         #self.pathEdit.setText(get_userpkg_dir())
-        if(metainfo):
+        if metainfo:
             self.set_data(name, "", metainfo)
 
         self.pathEdit.setText(get_userpkg_dir())
@@ -363,20 +363,20 @@ class NewPackage(QtWidgets.QDialog, ui_newpackage.Ui_NewPackageDialog):
         path = str(self.pathEdit.text())
         result = QtWidgets.QFileDialog.getExistingDirectory(self, "Select Directory", path)
 
-        if(result):
+        if result:
             self.pathEdit.setText(result)
 
     def accept(self):
         """ Accept dialog result """
         # Test if name is correct
         name = str(self.nameEdit.text())
-        if(not name or name in self.pkgs):
+        if not name or name in self.pkgs:
             mess = QtWidgets.QMessageBox.warning(self, "Error", "The Name is already used")
             return
 
         # Test Path
         path = str(self.pathEdit.text())
-        if(path and not os.path.isdir(path)):
+        if path and not os.path.isdir(path):
             mess = QtWidgets.QMessageBox.warning(self, "Error", "Invalid Path")
             return
 
@@ -386,7 +386,7 @@ class NewPackage(QtWidgets.QDialog, ui_newpackage.Ui_NewPackageDialog):
         """ Set the dialog data """
 
         self.nameEdit.setText(name)
-        if(path):
+        if path:
             self.pathEdit.setText(path)
 
         def value(key):
@@ -416,7 +416,7 @@ class NewPackage(QtWidgets.QDialog, ui_newpackage.Ui_NewPackageDialog):
             url=str(self.urlEdit.text()),
         )
 
-        return (name, metainfo, path)
+        return name, metainfo, path
 
 
 class EditPackage(NewPackage):
@@ -431,7 +431,7 @@ class EditPackage(NewPackage):
         self.setupUi(self)
 
         path = None
-        if(hasattr(package, "path")):
+        if hasattr(package, "path"):
             path = package.path
 
         self.pathButton.setVisible(False)
@@ -454,7 +454,7 @@ class EditPackage(NewPackage):
         )
 
         self.package.metainfo.update(metainfo)
-        if(hasattr(self.package, 'write')):
+        if hasattr(self.package, 'write'):
             self.package.write()
 
         QtWidgets.QDialog.accept(self)
@@ -484,7 +484,7 @@ class FactorySelector(QtWidgets.QDialog, ui_tofactory.Ui_FactorySelector):
             pname = pkg.name
 
             for f in list(pkg.values()):
-                if(isinstance(f, CompositeNodeFactory)):
+                if isinstance(f, CompositeNodeFactory):
                     name = "%s.%s" % (pname, f.name)
                     cfactories.append(name)
                     self.factorymap[name] = f
@@ -493,7 +493,7 @@ class FactorySelector(QtWidgets.QDialog, ui_tofactory.Ui_FactorySelector):
         self.comboBox.addItems(cfactories)
 
         i = -1
-        if(default_factory and default_factory.package):
+        if default_factory and default_factory.package:
             name = "%s.%s" % (default_factory.package.name, default_factory.name)
             i = self.comboBox.findText(name)
 

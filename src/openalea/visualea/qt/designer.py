@@ -27,7 +27,7 @@ __all__ = [
 ]
 
 import datetime
-import pkg_resources
+import importlib.resources
 import sys
 import os
 
@@ -52,8 +52,9 @@ def get_data(name, path):
     :param name: __name__
     :param path: path relative to module "name"
     """
-    path = pkg_resources.resource_filename(name, path)
-    path = Path(path).abspath()
+    with importlib.resources.path(name, path) as p:
+        path = p
+    print(path)
     return path
 
 
@@ -138,30 +139,30 @@ def generate_pyfile_from_uifile(name, src=None, dest=None, uibasename=None, forc
         return
     paths = []
     if src:
-        filepath = Path(src)
+        filepath = src
         paths.append(filepath)
     else:
         path = 'designer/%s.ui' % name
-        filepath = Path(get_data(modulename, path))
+        filepath = get_data(modulename, path)
         paths.append(filepath)
 
         path = 'resources/%s.ui' % name
-        filepath = Path(get_data(modulename, path))
+        filepath = get_data(modulename, path)
         paths.append(filepath)
 
         path = '%s.ui' % name
-        filepath = Path(get_data(modulename, path))
+        filepath = get_data(modulename, path)
         paths.append(filepath)
 
     for path in paths:
-        if path.isfile():
+        if path.is_file():
             break
 
 #  tmpdir = mkdtempu()
     if dest is None:
         pyfilename = path.parent / '_' + path.name.replace('.ui', '.py')
     else:
-        pyfilename = Path(dest)
+        pyfilename = dest
 
     if not pyfilename.exists():
         generate = True
