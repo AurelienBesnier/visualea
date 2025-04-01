@@ -1,5 +1,12 @@
 # OpenAlea.Visualea
 
+[![Last version](https://anaconda.org/openalea3/openalea.visualea/badges/version.svg)](https://anaconda.org/OpenAlea3/openalea.visualea/files)
+[![Documentation Status](https://readthedocs.org/projects/visualea/badge/?version=latest)](https://visualea.readthedocs.io/en/latest/?badge=latest)
+[![Licence](https://anaconda.org/openalea3/openalea.visualea/badges/license.svg)](https://cecill.info/licences/Licence_CeCILL_V2.1-en.html)
+[![Platform](https://anaconda.org/openalea3/openalea.visualea/badges/platforms.svg)](https://anaconda.org/openalea3/openalea.visualea)
+[![Python Version](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue)](https://www.python.org/downloads/)
+[![Downloads](https://anaconda.org/openalea3/openalea.visualea/badges/downloads.svg)](https://anaconda.org/openalea3/openalea.visualea)
+
 OpenAlea.Visualea is an application that allows to use OpenAlea packages 
 and to build dataflow graphically.
 
@@ -14,7 +21,7 @@ Nota : Cecill v2 license is a GPL compatible license.
 
 ## Dependencies
 
-- Python >= 3.7    
+- Python >= 3.8
 - Qt >= 5.12	  
 - QtPy (PyQt >= 5.12)	    
 
@@ -42,4 +49,4 @@ mamba install openalea.visualea -c openalea3 -c conda-forge
     4 visualea
 
 - Checkout the visualea branch  
-    `python setup.py develop`
+    `pip install -e .`
