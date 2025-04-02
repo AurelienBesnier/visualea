@@ -22,7 +22,7 @@ source:
   path: ..
 
 build:
-  noarch: python
+  # noarch: python
   preserve_egg_dir: True
   number: 1
   script: {{PYTHON}} -m pip install .
